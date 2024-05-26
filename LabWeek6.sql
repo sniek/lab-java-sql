@@ -73,9 +73,9 @@ FROM airline
 GROUP BY customer_status;
 
 /* Total Number of Aircraft with a Name Containing Boeing */
-SELECT COUNT(DISTINCT aircraft) AS total_boings
+SELECT COUNT(aircraft) AS total_boings
 FROM airline
-WHERE aircraft LIKE 'Boeing%'; /* SOMETHINGS WRONG HERE */
+WHERE aircraft LIKE 'Boeing%';
 
 /* Find All Flights with a Distance Between 300 and 2000 Miles */
 SELECT flight_number, flight_mileage
