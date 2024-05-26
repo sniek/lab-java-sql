@@ -49,3 +49,48 @@ VALUES
     (15, 'Jessica James', 'Silver', 'DL122', 'Airbus A330', 236, 4370, 127656),
     (16, 'Sam Rio', 'None', 'DL37', 'Boeing 747', 400, 531, 2653),
     (17, 'Christian Janco', 'Silver', 'DL222', 'Boeing 777', 264, 1765, 14642);
+
+/* Total number of flights */
+SELECT COUNT(*) AS total_flights
+FROM airline;
+
+/* Average Mileage */
+SELECT AVG(flight_mileage) AS avg_flight_distance
+FROM airline;
+
+/* Average Number of Seats */
+SELECT AVG(total_seats) AS avg_number_of_seats
+FROM airline;
+
+/* Average Number of Miles Flown by Customers Grouped by Status */
+SELECT customer_status, AVG(total_customer_mileage) AS avg_miles_flown
+FROM airline
+GROUP BY customer_status;
+
+/* Maximum Number of Miles Flown by Customers Grouped by Status */
+SELECT customer_status, MAX(total_customer_mileage) AS max_miles_flown
+FROM airline
+GROUP BY customer_status;
+
+/* Total Number of Aircraft with a Name Containing Boeing */
+SELECT COUNT(DISTINCT aircraft) AS total_boings
+FROM airline
+WHERE aircraft LIKE 'Boeing%'; /* SOMETHINGS WRONG HERE */
+
+/* Find All Flights with a Distance Between 300 and 2000 Miles */
+SELECT flight_number, flight_mileage
+FROM airline
+WHERE flight_mileage BETWEEN 300 AND 2000;
+
+/* Average Flight Distance Booked Grouped by Customer Status */
+SELECT customer_status, AVG(flight_mileage) AS avg_flight_distance
+FROM airline
+GROUP BY customer_status;
+
+/* Most Often Booked Aircraft by Gold Status Members */
+SELECT aircraft, COUNT(*) AS booking_count
+FROM airline
+WHERE customer_status = 'Gold'
+GROUP BY aircraft
+ORDER BY booking_count DESC
+LIMIT 1;
